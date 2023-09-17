@@ -1,30 +1,33 @@
 
 import React, { useState } from 'react';
-import ColorBlock from './ColorBlock';  // Updated correct casing
-import ColorForm from './ColorForm';  // Updated correct casing
+import ColorBlock from './ColorBlock';
+import ColorForm from './ColorForm';
 
-function App(){
+function App() {
     let [colors, setColors] = useState([
         'violet', 'blue',
         'lightblue', 'green',
         'greenyellow', 'yellow',
         'orange', 'red'
-    ])
-    
+    ]);
+
+    const addColor = (newColor) => {
+        setColors([...colors, newColor]);
+    }
+
     let colorMap = colors.map((color, i) => {
         return (
-            <ColorBlock color={color} />
-        )
-    })
+            <ColorBlock color={color} key={i} />
+        );
+    });
 
     return (
         <div className="App">
             {colorMap}
-            <ColorForm />
+            <ColorForm addColor={addColor} />
         </div>
-    )
+    );
 }
 
-
-
 export default App;
+
